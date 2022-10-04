@@ -5,7 +5,6 @@ const thoughtController = {
   getAllThoughts(req, res) {
     Thought.find({})
       .populate({
-        path: 'comments',
         select: '-__v'
       })
       .select('-__v')
@@ -21,7 +20,6 @@ const thoughtController = {
   getThoughtById({ params }, res) {
     Thought.findOne({ _id: params.id })
       .populate({
-        path: 'comments',
         select: '-__v'
       })
       .select('-__v')
@@ -42,8 +40,8 @@ const thoughtController = {
     Thought.create(body)
       .then(({ _id }) => {
         return User.findOneAndUpdate(
-          { _id: params.commentId },
-          { $push: { replies: body } },
+          { _id: params.userId },
+          { $push: { thoughts: _id } },
           { new: true, runValidators: true }
         );
       })
@@ -91,7 +89,7 @@ const thoughtController = {
     )
       .then(dbThoughtData => {
         if (!dbThoughtData) {
-          res.status(404).json({ message: 'No pizza found with this id!' });
+          res.status(404).json({ message: 'No Thought found with this id!' });
           return;
         }
         res.json(dbThoughtData);
@@ -101,7 +99,7 @@ const thoughtController = {
   // Delete Reaction
   deleteReaction({ params }, res) {
     Thought.findOneAndUpdate(
-      { _id: params.commentId },
+      { _id: params.thoughtId },
       { $pull: { reaction: { reactionId: params.reactionId } } },
       { new: true }
     )
