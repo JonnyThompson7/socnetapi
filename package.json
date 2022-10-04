@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "dayjs": "^1.11.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.4"
+  },
+  "name": "socnetapi",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonnyThompson7/socnetapi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonnyThompson7/socnetapi/issues"
+  },
+  "homepage": "https://github.com/JonnyThompson7/socnetapi#readme"
+}
